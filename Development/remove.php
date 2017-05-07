@@ -32,26 +32,34 @@
 				<div style="width: 50%; align: center; display: inline-block">
 					<h1>Flow</h1>
 					<p>Örebro</p>
-					<?php
-						// Establish connection to database
-						require("connection.php");
-						$query = "SELECT * FROM flow ORDER BY id DESC";
-						$response = mysql_query($query);
-						while($row = mysql_fetch_array($response)) {
-							echo '<div class="row">';
-								echo '<div class="col-md-12">';
-									echo '<div class="thumbnail">';
-										echo '<img src="'.$row["image"].'" alt="...">';
-										echo '<div class="caption">';
-											echo '<h3>'.$row["title"].'</h3>';
-											echo '<p>'.$row["content"].'</p>';
+					
+						<?php
+							// Establish connection to database
+							$conn = mysql_connect("localhost", "root", "bugocheat") or die(mysql_error());
+							//Select database
+							$db = mysql_select_db("joel");
+							$query = "SELECT * FROM flow ORDER BY id DESC";
+							$response = mysql_query($query);
+							while($row = mysql_fetch_array($response)) {
+								echo '<form method="post" action="removepost.php">';
+									echo '<div class="row">';
+										echo '<div class="col-md-12">';
+											echo '<div class="thumbnail">';
+												echo '<img src="'.$row["image"].'" alt="...">';
+												echo '<div class="caption">';
+													echo '<h3>'.$row["title"].'</h3>';
+													echo '<p>'.$row["content"].'</p>';
+													echo '<input name="id" value="'.$row["id"].'" style="display: none" />';
+													echo '<input name="file" value="'.$row["image"].'" style="display: none" />';
+													echo '<input type="submit" class="btn btn-default" value="Delete"></input>';
+												echo '</div>';
+											echo '</div>';
 										echo '</div>';
 									echo '</div>';
-								echo '</div>';
-							echo '</div>';
-						}
-						mysql_close();
-					?>
+								echo '</form>';
+							}
+							mysql_close();
+						?>
 				</div>
 			</div>
 		</div>

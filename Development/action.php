@@ -1,7 +1,7 @@
 <?php
 	// = = = = UPLOAD FILE = = = = 
 	// Must be absolute path
-	$target_directory = "/Library/WebServer/Documents/joel/uploads/"; 
+	$target_directory = "/Library/WebServer/Documents/joel/Website/Development/uploads/";
 	$filename = $_POST['fileLocation'];
 	$target_file = $target_directory . $filename;
 	$temp_filename = $_FILES["file"]["tmp_name"];
@@ -15,9 +15,7 @@
 
 	// = = = = Add to database = = = =
 	// Establish connection to database
-	$conn = mysql_connect("localhost", "root", "bugocheat") or die(mysql_error());
-	//Select database
-	$db = mysql_select_db("joel");
+	require("connection.php");
 
 	// Collect data from form
 	$title = $_POST["title"];

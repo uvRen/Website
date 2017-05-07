@@ -30,28 +30,30 @@
 		<div class="jumbotron">
 			<div style="text-align: center;">
 				<div style="width: 50%; align: center; display: inline-block">
-					<h1>Flow</h1>
-					<p>Örebro</p>
-					<?php
-						// Establish connection to database
-						require("connection.php");
-						$query = "SELECT * FROM flow ORDER BY id DESC";
-						$response = mysql_query($query);
-						while($row = mysql_fetch_array($response)) {
-							echo '<div class="row">';
-								echo '<div class="col-md-12">';
-									echo '<div class="thumbnail">';
-										echo '<img src="'.$row["image"].'" alt="...">';
-										echo '<div class="caption">';
-											echo '<h3>'.$row["title"].'</h3>';
-											echo '<p>'.$row["content"].'</p>';
-										echo '</div>';
-									echo '</div>';
-								echo '</div>';
-							echo '</div>';
-						}
-						mysql_close();
-					?>
+					<h1>Upload</h1>
+					<p>Form</p>
+					<form method="post" action="action.php" enctype="multipart/form-data">
+						<div class="input-group">
+							<input id="title" name="title" class="form-control" placeholder="Title"/>
+							<span class="input-group-addon" />
+						</div>
+						<div class="input-group">
+							<input id="content" name="content" class="form-control" placeholder="Content"/>
+							<span class="input-group-addon" />
+						</div>
+						<div class="input-group">
+							<input id="fileLocation" name="fileLocation"type="text" class="form-control" placeholder="Image to upload">
+						     <span class="input-group-btn">
+						        <button value="Browse..." id="browseBtn" class="btn btn-default" type="button">Browse...</button>
+						     </span>
+						     <input type="file" name="file" id="hiddenFile" style="display: none"/>
+						</div>
+						 <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <input type="submit" value="Upload" name="submit" class="btn btn-default"></button>
+                            </div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
