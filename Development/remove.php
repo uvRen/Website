@@ -35,9 +35,7 @@
 					
 						<?php
 							// Establish connection to database
-							$conn = mysql_connect("localhost", "root", "bugocheat") or die(mysql_error());
-							//Select database
-							$db = mysql_select_db("joel");
+							require("connection.php");
 							$query = "SELECT * FROM flow ORDER BY id DESC";
 							$response = mysql_query($query);
 							while($row = mysql_fetch_array($response)) {
